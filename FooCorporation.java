@@ -55,3 +55,5 @@ public class FooCorporation {
         System.out.println("--------------------------");
     }
 }
+
+// El programa solicita el nombre del empleado y las horas trabajadas, luego calcula el pago semanal considerando las horas extras. Si se ingresan horas inválidas, muestra un mensaje de error y no realiza el cálculo. El programa continúa hasta que el usuario decida salir.
