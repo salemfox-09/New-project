@@ -1,6 +1,39 @@
+import java.util.ArrayList;
 import java.util.Scanner;  
 
+class Employee {
+    private String name;
+    private int hoursWorked;
+    private double weeklyPay;
+
+    // Constructor es lo que se llama para crear un nuevo objeto de la clase Employee
+    public Employee(String name, int hoursWorked, double weeklyPay) {
+        this.name = name;
+        this.hoursWorked = hoursWorked;
+        this.weeklyPay = weeklyPay;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public double getWeeklyPay() {
+        return weeklyPay;
+    }
+
+    public String toString() {
+        return "Employee: " + name + ", Hours Worked: " + hoursWorked + ", Weekly Pay: $" + weeklyPay;
+    }
+
+}
+
 public class FooCorporation {
+
+    private static ArrayList<Employee> employeesList = new ArrayList<>();
     public static void main(String[] args) {
         Scanner inputScanner = new Scanner(System.in);
         boolean continueProgram = true; 
@@ -21,6 +54,8 @@ public class FooCorporation {
                 continueProgram = false;
             }
         }
+
+        showAllEmployees();
 
         inputScanner.close();
     }
@@ -47,12 +82,39 @@ public class FooCorporation {
             int overtimeHours = hoursWorked - 40;
             double overtimePay = overtimeHours * hourlyRate * 0.5; // Solo el extra
             weeklyPay += overtimePay;
+            System.out.println("Employee: " + name);
             System.out.println("Overtime pay: $" + overtimePay);
         }
 
          System.out.println("Employee: " + name);
         System.out.println("Weekly pay: $" + weeklyPay);
         System.out.println("--------------------------");
+
+        Employee newEmployee = new Employee(name, hoursWorked, weeklyPay);
+        employeesList.add(newEmployee);
+        System.out.println("Employee added to the list!");
+
+         
+    }
+
+    public static void showAllEmployees() {
+        System.out.println("\n========== LIST OF ALL EMPLOYEES ==========");
+        
+        if (employeesList.isEmpty()) {
+            System.out.println("No employees registered.");
+        } else {
+            double totalPays = 0;
+            
+            for (int i = 0; i < employeesList.size(); i++) {
+                System.out.println((i + 1) + ". " + employeesList.get(i));
+                totalPays += employeesList.get(i).getWeeklyPay();
+            }
+            
+            System.out.println("\nTotal employees: " + employeesList.size());
+            System.out.println("Total payroll: $" + totalPays);
+        }
+        
+        System.out.println("==========================================");
     }
 }
 
